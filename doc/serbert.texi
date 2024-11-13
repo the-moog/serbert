@@ -21,8 +21,7 @@ serbert --- perform serial Bit Error Rate Test (BERT)
 
 @quotation
 
-@t{serbert  PORT  [-cdfhlqrv ] [ -b   BAUD ] [ -i   SECS ] [ -k   kBYTES ] [ -K   KBYTES ] [ -m   MINS ] [ -n   BYTES ] [ -o   HOURS ] [ -p   PAUSETIME ] [ -s   STRING ] [ -t   TIMEOUT
-]}
+@t{serbert  PORT  [-cdfhlqrv ] [ -b   BAUD ] [ -i   SECS ] [ -k   kBYTES ] [ -K   KBYTES ] [ -m   MINS ] [ -n   BYTES ] [ -o   HOURS ] [ -p   PAUSETIME ] [ -s   STRING ] [ -t   TIMEOUT ]}
 @sp 1
 
 @end quotation
