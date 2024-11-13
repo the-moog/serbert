@@ -1,0 +1,31 @@
+Things to do on SERBERT.
+
+1) Split off serp/serp into separate library, for other projects.
+
+2) Conditionally set DTR and RTS.
+
+3) Options before port, as well as after.
+
+5) Sort out i_get_lock_name() in seru.c. Environmental variable or default for
+   lock path.
+
+6) Add support for 3600 7200 14400 28800 baud these are supported by the pl2303
+   usb to serial driver.
+
+7) Suport for 1.5 stop bits.
+
+8) Does low latency do anything?
+
+9) Why does make distcheck finish badly with this:
+./../../doc/serbert.texi:26: Argument of @parseargline has an extra }.
+<inserted text> 
+                @par 
+<to be read again> 
+                   }
+@t #1->{@tt @rawbackslash @plainfrenchspacing #1}
+                                                 @null 
+l.26 }
+      
+? 
+
+serbert.info seems ok, though

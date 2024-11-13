@@ -1,0 +1,15 @@
+Serbert
+
+Version 0.3.0
+
+ 1) Added max, min and average char return times.
+
+ 2) Added low latency, but unsure if this has any affect, whatever.
+
+Version 0.2.0:
+
+ 1) Added paced output.
+
+Version 0.1.0:
+
+ 1) Initial version

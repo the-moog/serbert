@@ -1,0 +1,272 @@
+This is serbert.info, produced by makeinfo version 4.13 from serbert.texi.
+
+START-INFO-DIR-ENTRY
+* SERBERT: (serbert).           perform serial Bit Error Rate Test (BERT)
+END-INFO-DIR-ENTRY
+
+
+File: serbert.info,  Node: Top,  Up: (dir)
+
+SERBERT
+*******
+
+
+
+Name
+****
+
+serbert -- perform serial Bit Error Rate Test (BERT)
+
+
+
+Synopsis
+********
+
+     serbert  PORT  [-cdfhlqrv ] [ -b   BAUD ] [ -i   SECS ] [ -k
+     kBYTES ] [ -K   KBYTES ] [ -m   MINS ] [ -n   BYTES ] [ -o   HOURS
+     ] [ -p   PAUSETIME ] [ -s   STRING ] [ -t   TIMEOUT ]
+
+   Whitespace is allowed between a command line option and it's
+parameter, but is not compulsory.
+
+
+
+DESCRIPTION
+***********
+
+`serbert' performs a serial Bit Error Rate Test (BERT) using the given
+port. Transmits bytes and waits for their uncorrupted return.
+
+
+
+OPTIONS
+*******
+
+_PORT_
+     Serial port to use.
+
+`-b'
+     Baud rate to use: 50, 75, 110, 134, 150, 200, 300, 600, 1200,
+     1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200.
+
+`-c'
+     Continuous mode. Test does not automatically terminate.
+
+`-d'
+     Diagnostic mode. Show requested parameters and detailed error
+     messages.
+
+`-f'
+     Display further information on test completion.
+
+`-h'
+     Display help.
+
+`-i'
+     Display intermediate results every SECS seconds.
+
+`-k'
+     Number of bytes to send in k (* 1000).
+
+`-K'
+     Number of bytes to send in K (* 1024).
+
+`-l'
+     Use low latency.
+
+`-m'
+     Number of minutes to send.
+
+`-n'
+     Number of bytes to send. Default is 1024.
+
+`-o'
+     Number of hours to send.
+
+`-p'
+     Time between bytes. 0.000000001 to 9999 secs.
+
+`-q'
+     Quiet mode. Just display final results.
+
+`-r'
+     Send random bytes mode.
+
+`-s'
+     The string to send in hex e.g. -sAA55 alternately sends the two
+     bytes hex AA and 55. The default string is 256 bytes: 00 to FF.
+
+`-t'
+     The read timeout to use in microseconds.
+
+`-v'
+     Verbose mode. Show all that happens.
+
+
+USAGE
+*****
+
+`serbert' can be used to check a serial line. By fitting a loopback on
+one end of a serial link, and using `serbert' to inject data into the
+other, a performance test can be made on the line.
+
+   `serbert', however, does not provide a true Bit Error Rate Test
+(BERT), as it does not check the individual bits returned. It uses the
+operating systems standard serial interface, which provides the status
+of each returned byte.
+
+   Each test will show when a communication error occurs - a timeout or
+framing error - unless quiet mode (-q) is selected. At the end of the
+test, the number of errors that occurred will be shown.
+
+   To test, first you will need to fit a loopback on the line you are
+testing. On RS232 lines, this will mean linking the RX and TX lines
+together - pins 2 and 3. No control lines need to be linked, unless any
+intermediate equipment (line drivers, modems, etc.) require it.
+
+   The first time you use `serbert' try linking together the RX and TX
+lines on your computer, just to check that `serbert' is working
+correctly. A D9 and D25, which have pins 2 and 3 linked can be used,
+and breakout boxes are also useful for this.
+
+   The port to be used must be given. It is the users responsibility to
+gain permission to use the port. The user may need to be a member of
+the dialout group.
+
+   On Linux, for instance, the following can be used:
+
+   serbert /dev/ttyS0
+
+   This will use the default options, so the 1024 bytes are sent. The
+bytes sent are 00 to FF hex sent repeatedly. The default baud rate is
+19200, and bytes are sent 8 bits, no parity, 1 stop bit.
+
+   If any communications errors occur, then a report will be shown,
+giving the type of error, and the time it occurred.
+
+   The time a communications error occurred can be useful on long term
+tests, to trace if errors occur at a particular time of day, or with a
+certain regularity. If they do, then this may then be associated with a
+piece of equipment which is turned on by a timer, or is used at certain
+times of day.  In this way, equipment interfering with communications
+can be traced. It is the users responsibility to check that the system
+time is correct.
+
+   As an alternative, while the test is running, intermediate results
+can be displayed. The -i option will show these intermediate results.
+The option requires a number, which is how often to show the
+intermediate results, in seconds. The error times will not be shown
+when the intermediate results option is used. Alternatively, pressing
+the 'i' key during the test will show the intermediate results.
+
+   The test can be run for a specified time, number of bytes or
+continuously. If the test is to be run for a specified time, then the
+-m option can be used to specify the number of minutes, or the -o
+option for the number of hours. If a particular number of bytes are to
+be sent, then the -n, -k or -K options can be used. The -n option sends
+the number of bytes given with the option. The -k and -K options send
+the the value given, multiplied by either 1000 (kilobytes) or 1024
+(kibibytes) respectively. A test can be performed which does not
+automatically terminate, by using the -c option. A test can be
+terminated at any time by pressing 'q'. If 'q' is pressed the current
+results will be shown.
+
+   If a different baud rate is required, then -b option can be used to
+select an alternative one.
+
+   The bytes that are sent can be changed. A specific byte or series of
+bytes can be sent using the -s option. -s is followed by the string to
+send in hex e.g.  -sAA55 alternately sends the two bytes hex AA and 55.
+A pseudo-random sequence of bytes can also be sent using the -r option.
+
+   While the test is running, if intermediate results (-i) are not
+being used, any errors detected will be reported. If this is not
+required, and only the final results are needed, the quiet option, -q,
+can be used. If the test cannot be run, due, for instance, to an
+incorrect parameter, any resulting error message will not be suppressed.
+
+   When a byte is transmitted by `serbert', it waits a certain time for
+the byte to be returned. This timeout time, which defaults to 33280uS,
+can be changed with the -t option. This option requires a time in
+microseconds. A longer timeout time may be required if intermediate
+equipment delays the passage of the byte.
+
+   If the rate of bytes sent needs to be slowed down, then the -p
+option can be used. A pause of between 0.000000001 to 9999 seconds can
+be used.
+
+   To view the bytes being sent and received, as well as the
+communications errors, use the -v option, verbose mode. This can be
+useful to check if a timeout has occurred due to a byte returning late,
+leading `serbert' to believe a corrupt byte has been received. This
+type of error should be fairly consistant, and, using the -v option,
+easy to detect. If it is occurring, use the -t option to increase the
+timeout. The -v option cannot be used with the intermediate results
+option -i.
+
+   Further information on the test run can be obtained by using the -f
+option.  Currently this information consists of the maximum, minimum
+and average time that bytes took to return.
+
+   The -l option selects low latency. This is an experimental feature,
+which will probably do nothing.
+
+   Help can be displayed by using the -h option, or by entering
+'`serbert'' without any parameters. No test will be run after help is
+displayed.
+
+
+
+DIAGNOSTICS
+***********
+
+There is a diagnostics mode, switched on by the -d option. When this is
+used the current settings are displayed before the test commences.
+Also, more detailed system error messages (as opposed to communication
+error messages) are shown.
+
+
+
+EXIT STATUS
+***********
+
+`serbert' will exit with code 0 if it could perform a test. It exits
+with code 1 when it was unable to open a serial port, or encountered an
+invalid command line option.
+
+
+
+AUTHOR
+******
+
+D W Clarke <dwclarke@users.sourceforge.net>
+
+
+
+COPYRIGHT
+*********
+
+Copyright 2004, 2010, 2011 D W Clarke <dwclarke@users.sourceforge.net>.
+This software is licensed under the GNU Public License. See the file
+COPYING, included with this software, for details.
+
+
+
+Tag Table:
+Node: Top191
+Ref: name254
+Ref: synopsis321
+Ref: DESCRIPTION639
+Ref: OPTIONS800
+Ref: USAGE1924
+Ref: DIAGNOSTICS7316
+Ref: EXIT STATUS7581
+Ref: AUTHOR7779
+Ref: COPYRIGHT7841
+
+End Tag Table
+
+
+Local Variables:
+coding: US-ASCII
+End:

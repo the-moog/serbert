@@ -1,0 +1,213 @@
+'\" -*- coding: us-ascii -*-
+.if \n(.g .ds T< \\FC
+.if \n(.g .ds T> \\F[\n[.fam]]
+.de URL
+\\$2 \(la\\$1\(ra\\$3
+..
+.if \n(.g .mso www.tmac
+.TH SERBERT 1 "03 May 2011" Linux "Serbert User Guide"
+.SH NAME
+serbert \- perform serial Bit Error Rate Test (BERT)
+.SH SYNOPSIS
+'nh
+.fi
+.ad l
+\fBserbert\fR \kx
+.if (\nx>(\n(.l/2)) .nr x (\n(.l/5)
+'in \n(.iu+\nxu
+\fIPORT\fR [-cdfhlqrv ] [ -b \fIBAUD\fR ] [ -i \fISECS\fR ] [ -k \fIkBYTES\fR ] [ -K \fIKBYTES\fR ] [ -m \fIMINS\fR ] [ -n \fIBYTES\fR ] [ -o \fIHOURS\fR ] [ -p \fIPAUSETIME\fR ] [ -s \fISTRING\fR ] [ -t \fITIMEOUT\fR ]
+.br
+'in \n(.iu-\nxu
+.ad b
+'hy
+Whitespace is allowed between a command line option and it's parameter, but is not compulsory.
+.SH DESCRIPTION
+\fBserbert\fR
+performs a serial Bit Error Rate Test (BERT) using the given port. Transmits
+bytes and waits for their uncorrupted return.
+.SH OPTIONS
+.TP 
+\fIPORT\fR
+Serial port to use.
+.TP 
+\*(T<\fB\-b\fR\*(T>
+Baud rate to use: 50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400,
+4800, 9600, 19200, 38400, 57600, 115200.
+.TP 
+\*(T<\fB\-c\fR\*(T>
+Continuous mode. Test does not automatically terminate.
+.TP 
+\*(T<\fB\-d\fR\*(T>
+Diagnostic mode. Show requested parameters and detailed error messages.
+.TP 
+\*(T<\fB\-f\fR\*(T>
+Display further information on test completion.
+.TP 
+\*(T<\fB\-h\fR\*(T>
+Display help.
+.TP 
+\*(T<\fB\-i\fR\*(T>
+Display intermediate results every SECS seconds.
+.TP 
+\*(T<\fB\-k\fR\*(T>
+Number of bytes to send in k (* 1000).
+.TP 
+\*(T<\fB\-K\fR\*(T>
+Number of bytes to send in K (* 1024).
+.TP 
+\*(T<\fB\-l\fR\*(T>
+Use low latency.
+.TP 
+\*(T<\fB\-m\fR\*(T>
+Number of minutes to send.
+.TP 
+\*(T<\fB\-n\fR\*(T>
+Number of bytes to send. Default is 1024.
+.TP 
+\*(T<\fB\-o\fR\*(T>
+Number of hours to send.
+.TP 
+\*(T<\fB\-p\fR\*(T>
+Time between bytes. 0.000000001 to 9999 secs.
+.TP 
+\*(T<\fB\-q\fR\*(T>
+Quiet mode. Just display final results.
+.TP 
+\*(T<\fB\-r\fR\*(T>
+Send random bytes mode.
+.TP 
+\*(T<\fB\-s\fR\*(T>
+The string to send in hex e.g. -sAA55 alternately sends the two bytes hex AA
+and 55. The default string is 256 bytes: 00 to FF.
+.TP 
+\*(T<\fB\-t\fR\*(T>
+The read timeout to use in microseconds.
+.TP 
+\*(T<\fB\-v\fR\*(T>
+Verbose mode. Show all that happens.
+.SH USAGE
+\fBserbert\fR
+can be used to check a serial line. By fitting a loopback on one end of a
+serial link, and using
+\fBserbert\fR
+to inject data into the other, a performance test can be made on the line.
+.PP
+\fBserbert\fR,
+however, does not provide a true Bit Error Rate Test (BERT), as it does not
+check the individual bits returned. It uses the operating systems standard
+serial interface, which provides the status of each returned byte.
+.PP
+Each test will show when a communication error occurs - a timeout or framing
+error - unless quiet mode (-q) is selected. At the end of the test, the
+number of errors that occurred will be shown.
+.PP
+To test, first you will need to fit a loopback on the line you are testing. On
+RS232 lines, this will mean linking the RX and TX lines together - pins 2 and
+3. No control lines need to be linked, unless any intermediate equipment (line
+drivers, modems, etc.) require it.
+.PP
+The first time you use
+\fBserbert\fR
+try linking together the RX and TX lines on your computer, just to check that
+\fBserbert\fR
+is working correctly. A D9 and D25, which have pins 2 and 3 linked can be used,
+and breakout boxes are also useful for this.
+.PP
+The port to be used must be given. It is the users responsibility to gain
+permission to use the port. The user may need to be a member of the dialout
+group.
+.PP
+On Linux, for instance, the following can be used:
+.PP
+serbert /dev/ttyS0
+.PP
+This will use the default options, so the 1024 bytes are sent. The bytes sent
+are 00 to FF hex sent repeatedly. The default baud rate is 19200, and bytes
+are sent 8 bits, no parity, 1 stop bit.
+.PP
+If any communications errors occur, then a report will be shown, giving the
+type of error, and the time it occurred.
+.PP
+The time a communications error occurred can be useful on long term tests, to
+trace if errors occur at a particular time of day, or with a certain
+regularity. If they do, then this may then be associated with a piece of
+equipment which is turned on by a timer, or is used at certain times of day.
+In this way, equipment interfering with communications can be traced. It is the 
+users responsibility to check that the system time is correct.
+.PP
+As an alternative, while the test is running, intermediate results can be
+displayed. The -i option will show these intermediate results. The option
+requires a number, which is how often to show the intermediate results, in
+seconds. The error times will not be shown when the intermediate results
+option is used. Alternatively, pressing the 'i' key during the test will show
+the intermediate results.
+.PP
+The test can be run for a specified time, number of bytes or continuously. If
+the test is to be run for a specified time, then the -m option can be used to
+specify the number of minutes, or the -o option for the number of hours. If a
+particular number of bytes are to be sent, then the -n, -k or -K options can be
+used. The -n option sends the number of bytes given with the option. The -k
+and -K options send the the value given, multiplied by either 1000 (kilobytes)
+or 1024 (kibibytes) respectively. A test can be performed which does not
+automatically terminate, by using the -c option. A test can be terminated at
+any time by pressing 'q'. If 'q' is pressed the current results will be shown.
+.PP
+If a different baud rate is required, then -b option can be used to select an
+alternative one.
+.PP
+The bytes that are sent can be changed. A specific byte or series of bytes can
+be sent using the -s option. -s is followed by the string to send in hex e.g.
+-sAA55 alternately sends the two bytes hex AA and 55. A pseudo-random sequence
+of bytes can also be sent using the -r option.
+.PP
+While the test is running, if intermediate results (-i) are not being used, any
+errors detected will be reported. If this is not required, and only the final
+results are needed, the quiet option, -q, can be used. If the test cannot be
+run, due, for instance, to an incorrect parameter, any resulting error message
+will not be suppressed.
+.PP
+When a byte is transmitted by
+\fBserbert\fR,
+it waits a certain time for the byte
+to be returned. This timeout time, which defaults to 33280uS, can be changed
+with the -t option. This option requires a time in microseconds. A longer
+timeout time may be required if intermediate equipment delays the passage of
+the byte.
+.PP
+If the rate of bytes sent needs to be slowed down, then the -p option can be
+used. A pause of between 0.000000001 to 9999 seconds can be used.
+.PP
+To view the bytes being sent and received, as well as the communications
+errors, use the -v option, verbose mode. This can be useful to check if a
+timeout has occurred due to a byte returning late, leading
+\fBserbert\fR
+to believe a corrupt byte has been received. This type of error should be fairly
+consistant, and, using the -v option, easy to detect. If it is occurring, use
+the -t option to increase the timeout. The -v option cannot be used with the
+intermediate results option -i.
+.PP
+Further information on the test run can be obtained by using the -f option.
+Currently this information consists of the maximum, minimum and average time
+that bytes took to return.
+.PP
+The -l option selects low latency. This is an experimental feature, which
+will probably do nothing.
+.PP
+Help can be displayed by using the -h option, or by entering
+\&'\fBserbert\fR'
+without any parameters. No test will be run after help is displayed.
+.SH DIAGNOSTICS
+There is a diagnostics mode, switched on by the -d option. When this is used
+the current settings are displayed before the test commences. Also, more
+detailed system error messages (as opposed to communication error messages) are
+shown.
+.SH "EXIT STATUS"
+\fBserbert\fR
+will exit with code 0 if it could perform a test. It exits with code 1 when it
+was unable to open a serial port, or encountered an invalid command line option.
+.SH AUTHOR
+D W Clarke <dwclarke@users.sourceforge.net>
+.SH COPYRIGHT
+Copyright 2004, 2010, 2011 D W Clarke <dwclarke@users.sourceforge.net>. This software
+is licensed under the GNU Public License. See the file COPYING, included with
+this software, for details.
