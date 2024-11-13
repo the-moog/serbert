@@ -269,14 +269,14 @@ lock_state_t i_check_for_lock(char *lock_file)
   }
   else
   {
-
+    int num_read=0;
     /* Was the lock file created by a process which is still running */
 
     /* read in process number */
-    (void) fscanf(lock_file_ptr, "%d", &lock_process_no);
+    num_read = fscanf(lock_file_ptr, "%d", &lock_process_no);
 
     /* Have we a valid process number? */
-    if(lock_process_no > 0)
+    if(num_read==1 && !ferror(lock_file_ptr) && lock_process_no > 0)
     {
 
       lock_pid = (pid_t) lock_process_no;
@@ -301,7 +301,7 @@ lock_state_t i_check_for_lock(char *lock_file)
     else
     {
 
-      /* Invalid process number, so assume the port is unlocked */
+      /* Invalid process number, or error accessing lock file, so assume the port is unlocked */
       port_state = i_UNLOCKED;
 
     }
