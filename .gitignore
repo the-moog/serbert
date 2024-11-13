@@ -57,3 +57,6 @@ Makefile
 config.log
 config.status
 doc/Makefile
+serbert
+doc/serbert.html
+SERBERT-0.3.1.tar.gz
