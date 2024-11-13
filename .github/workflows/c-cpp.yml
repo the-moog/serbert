@@ -1,10 +1,11 @@
 name: C/C++ CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,8 +16,9 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install tex tool
       run: |
-        sudo apt-get update
-        sudo apt-get install texlive
+        sudo apt update
+        sudo apt upgrade --yes
+        sudo apt install texlive --assume-yes --install-recommends 
     - name: configure
       run: ./configure
     - name: make
@@ -25,3 +27,10 @@ jobs:
       run: make check
     - name: make distcheck
       run: make distcheck
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          SERBERT-*.tar.gz
+          serbert
+          
