@@ -1,3 +1,14 @@
+
+FORK
+
+ This is a fork of serbert, located at https://serbert.sourceforge.net
+
+ This fork is to capture minor updates and improvements to be available to be
+ available as per GPL. All credit goes to the original author, David Clarke.
+
+ The usage page from sourceforge is now duplicated in doc/usage.html
+
+
 README for Serbert
 
  Serbert is a command line utility which performs a Bit Error Rate Test (BERT)

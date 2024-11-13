@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<!-- This page was created using a pen and paper -->
+<!-- Serbert usage page Version 1.000 30/08/04 -->
+  <head>
+    <title>Serbert Usage</title>
+    <meta name="Author" content="D W Clarke">
+    <meta name="Keywords" content="Software, Serial, BERT, Bit, Error, Rate, Tester">
+    <style></style>
+    <!-- No style, so they say -->
+  </head>
+  <body>
+    <hr width="100%">
+    <h1 align="center">SERBERT USAGE</h1>
+    <hr width="100%">
+    <big>
+    <a href="http://serbert.sourceforge.net/">HOME</a>
+    &nbsp|&nbsp
+    <a href="http://sourceforge.net/projects/serbert/">PROJECT PAGE</a>
+    &nbsp|&nbsp
+    USAGE
+    </big>
+    <hr width="100%">
+    <H1
+><A
+NAME="serbert1"
+></A
+>SERBERT</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="name"
+></A
+><H2
+>Name</H2
+>serbert&nbsp;--&nbsp;perform serial Bit Error Rate Test (BERT)</DIV
+><DIV
+CLASS="refsynopsisdiv"
+><A
+NAME="synopsis"
+></A
+><H2
+>Synopsis</H2
+><P
+><B
+CLASS="command"
+>serbert</B
+>   <TT
+CLASS="replaceable"
+><I
+>PORT</I
+></TT
+>  [-cdfhlqrv ] [ -b    <TT
+CLASS="replaceable"
+><I
+>BAUD</I
+></TT
+> ] [ -i    <TT
+CLASS="replaceable"
+><I
+>SECS</I
+></TT
+> ] [ -k    <TT
+CLASS="replaceable"
+><I
+>kBYTES</I
+></TT
+> ] [ -K    <TT
+CLASS="replaceable"
+><I
+>KBYTES</I
+></TT
+> ] [ -m    <TT
+CLASS="replaceable"
+><I
+>MINS</I
+></TT
+> ] [ -n    <TT
+CLASS="replaceable"
+><I
+>BYTES</I
+></TT
+> ] [ -o    <TT
+CLASS="replaceable"
+><I
+>HOURS</I
+></TT
+> ] [ -p    <TT
+CLASS="replaceable"
+><I
+>PAUSETIME</I
+></TT
+> ] [ -s    <TT
+CLASS="replaceable"
+><I
+>STRING</I
+></TT
+> ] [ -t    <TT
+CLASS="replaceable"
+><I
+>TIMEOUT</I
+></TT
+> ]<BR></P
+><P
+>Whitespace is allowed between a command line option and it's parameter, but is not compulsory.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="description"
+></A
+><H2
+>DESCRIPTION</H2
+><P
+><B
+CLASS="command"
+>serbert</B
+>
+performs a serial Bit Error Rate Test (BERT) using the given port. Transmits
+bytes and waits for their uncorrupted return.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="options"
+></A
+><H2
+>OPTIONS</H2
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>PORT</I
+></SPAN
+></DT
+><DD
+><P
+>Serial port to use.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-b</CODE
+></DT
+><DD
+><P
+>Baud rate to use: 50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400,
+4800, 9600, 19200, 38400, 57600, 115200.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-c</CODE
+></DT
+><DD
+><P
+>Continuous mode. Test does not automatically terminate.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-d</CODE
+></DT
+><DD
+><P
+>Diagnostic mode. Show requested parameters and detailed error messages.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-f</CODE
+></DT
+><DD
+><P
+>Display further information on test completion.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-h</CODE
+></DT
+><DD
+><P
+>Display help.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-i</CODE
+></DT
+><DD
+><P
+>Display intermediate results every SECS seconds.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-k</CODE
+></DT
+><DD
+><P
+>Number of bytes to send in k (* 1000).</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-K</CODE
+></DT
+><DD
+><P
+>Number of bytes to send in K (* 1024).</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-l</CODE
+></DT
+><DD
+><P
+>Use low latency.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-m</CODE
+></DT
+><DD
+><P
+>Number of minutes to send.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-n</CODE
+></DT
+><DD
+><P
+>Number of bytes to send. Default is 1024.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-o</CODE
+></DT
+><DD
+><P
+>Number of hours to send.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-p</CODE
+></DT
+><DD
+><P
+>Time between bytes. 0.000000001 to 9999 secs.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-q</CODE
+></DT
+><DD
+><P
+>Quiet mode. Just display final results.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-r</CODE
+></DT
+><DD
+><P
+>Send random bytes mode.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-s</CODE
+></DT
+><DD
+><P
+>The string to send in hex e.g. -sAA55 alternately sends the two bytes hex AA
+and 55. The default string is 256 bytes: 00 to FF.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-t</CODE
+></DT
+><DD
+><P
+>The read timeout to use in microseconds.</P
+></DD
+><DT
+><CODE
+CLASS="option"
+>-v</CODE
+></DT
+><DD
+><P
+>Verbose mode. Show all that happens.</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="usage"
+></A
+><H2
+>USAGE</H2
+><P
+><B
+CLASS="command"
+>serbert</B
+>
+can be used to check a serial line. By fitting a loopback on one end of a
+serial link, and using
+<B
+CLASS="command"
+>serbert</B
+>
+to inject data into the other, a performance test can be made on the line.</P
+><P
+><B
+CLASS="command"
+>serbert</B
+>,
+however, does not provide a true Bit Error Rate Test (BERT), as it does not
+check the individual bits returned. It uses the operating systems standard
+serial interface, which provides the status of each returned byte.</P
+><P
+>Each test will show when a communication error occurs - a timeout or framing
+error - unless quiet mode (-q) is selected. At the end of the test, the
+number of errors that occurred will be shown.</P
+><P
+>To test, first you will need to fit a loopback on the line you are testing. On
+RS232 lines, this will mean linking the RX and TX lines together - pins 2 and
+3. No control lines need to be linked, unless any intermediate equipment (line
+drivers, modems, etc.) require it.</P
+><P
+>The first time you use
+<B
+CLASS="command"
+>serbert</B
+>
+try linking together the RX and TX lines on your computer, just to check that
+<B
+CLASS="command"
+>serbert</B
+>
+is working correctly. A D9 and D25, which have pins 2 and 3 linked can be used,
+and breakout boxes are also useful for this.</P
+><P
+>The port to be used must be given. It is the users responsibility to gain
+permission to use the port. The user may need to be a member of the dialout
+group.</P
+><P
+>On Linux, for instance, the following can be used:</P
+><P
+> serbert /dev/ttyS0</P
+><P
+>This will use the default options, so the 1024 bytes are sent. The bytes sent
+are 00 to FF hex sent repeatedly. The default baud rate is 19200, and bytes
+are sent 8 bits, no parity, 1 stop bit.</P
+><P
+>If any communications errors occur, then a report will be shown, giving the
+type of error, and the time it occurred.</P
+><P
+>The time a communications error occurred can be useful on long term tests, to
+trace if errors occur at a particular time of day, or with a certain
+regularity. If they do, then this may then be associated with a piece of
+equipment which is turned on by a timer, or is used at certain times of day.
+In this way, equipment interfering with communications can be traced. It is the 
+users responsibility to check that the system time is correct.</P
+><P
+>As an alternative, while the test is running, intermediate results can be
+displayed. The -i option will show these intermediate results. The option
+requires a number, which is how often to show the intermediate results, in
+seconds. The error times will not be shown when the intermediate results
+option is used. Alternatively, pressing the 'i' key during the test will show
+the intermediate results.</P
+><P
+>The test can be run for a specified time, number of bytes or continuously. If
+the test is to be run for a specified time, then the -m option can be used to
+specify the number of minutes, or the -o option for the number of hours. If a
+particular number of bytes are to be sent, then the -n, -k or -K options can be
+used. The -n option sends the number of bytes given with the option. The -k
+and -K options send the the value given, multiplied by either 1000 (kilobytes)
+or 1024 (kibibytes) respectively. A test can be performed which does not
+automatically terminate, by using the -c option. A test can be terminated at
+any time by pressing 'q'. If 'q' is pressed the current results will be shown.</P
+><P
+>If a different baud rate is required, then -b option can be used to select an
+alternative one.</P
+><P
+>The bytes that are sent can be changed. A specific byte or series of bytes can
+be sent using the -s option. -s is followed by the string to send in hex e.g.
+-sAA55 alternately sends the two bytes hex AA and 55. A pseudo-random sequence
+of bytes can also be sent using the -r option.</P
+><P
+>While the test is running, if intermediate results (-i) are not being used, any
+errors detected will be reported. If this is not required, and only the final
+results are needed, the quiet option, -q, can be used. If the test cannot be
+run, due, for instance, to an incorrect parameter, any resulting error message
+will not be suppressed.</P
+><P
+>When a byte is transmitted by
+<B
+CLASS="command"
+>serbert</B
+>,
+it waits a certain time for the byte
+to be returned. This timeout time, which defaults to 33280uS, can be changed
+with the -t option. This option requires a time in microseconds. A longer
+timeout time may be required if intermediate equipment delays the passage of
+the byte.</P
+><P
+>If the rate of bytes sent needs to be slowed down, then the -p option can be
+used. A pause of between 0.000000001 to 9999 seconds can be used.</P
+><P
+>To view the bytes being sent and received, as well as the communications
+errors, use the -v option, verbose mode. This can be useful to check if a
+timeout has occurred due to a byte returning late, leading
+<B
+CLASS="command"
+>serbert</B
+>
+to believe a corrupt byte has been received. This type of error should be fairly
+consistant, and, using the -v option, easy to detect. If it is occurring, use
+the -t option to increase the timeout. The -v option cannot be used with the
+intermediate results option -i.</P
+><P
+>Further information on the test run can be obtained by using the -f option.
+Currently this information consists of the maximum, minimum and average time
+that bytes took to return.</P
+><P
+>The -l option selects low latency. This is an experimental feature, which
+will probably do nothing.</P
+><P
+>Help can be displayed by using the -h option, or by entering
+'<B
+CLASS="command"
+>serbert</B
+>'
+without any parameters. No test will be run after help is displayed.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="diagnostics"
+></A
+><H2
+>DIAGNOSTICS</H2
+><P
+>There is a diagnostics mode, switched on by the -d option. When this is used
+the current settings are displayed before the test commences. Also, more
+detailed system error messages (as opposed to communication error messages) are
+shown.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="exit_status"
+></A
+><H2
+>EXIT STATUS</H2
+><P
+><B
+CLASS="command"
+>serbert</B
+>
+will exit with code 0 if it could perform a test. It exits with code 1 when it
+was unable to open a serial port, or encountered an invalid command line option.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="author"
+></A
+><H2
+>AUTHOR</H2
+><P
+>D W Clarke &#60;dwclarke@users.sourceforge.net&#62;</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="copyright"
+></A
+><H2
+>COPYRIGHT</H2
+><P
+>Copyright 2004, 2010, 2011 D W Clarke &#60;dwclarke@users.sourceforge.net&#62;. This software
+is licensed under the GNU Public License. See the file COPYING, included with
+this software, for details.</P
+></DIV>
+    <p>
+    </p>
+    <hr width="100%">
+    <p>
+    This project is hosted by Sourceforge.
+    </p>
+    <a href="http://sourceforge.net/projects/serbert"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=127546&amp;type=16" width="150" height="40" alt="Get Serbert at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+ </body>
+</html>
