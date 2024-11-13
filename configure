@@ -5280,6 +5280,7 @@ printf "%s\n" "#define SELECT_TYPE_ARG5 ($3)" >>confdefs.h
 
 rm -rf conftest*
 
+
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking return type of signal handlers" >&5
 printf %s "checking return type of signal handlers... " >&6; }
 if test ${ac_cv_type_signal+y}

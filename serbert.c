@@ -34,8 +34,8 @@
 #include <string.h>      /* String manipulation lib - strlen(), memmove()   */
 #include <stdlib.h>      /* Standard library - atoi(), strtoul(), rand()    */
 #include <ctype.h>       /* Character tests - isxdigit(), tolower()         */
-//#include <time.h>        /* Time defs - time(), localtime(), strftime()     */
-//                         /* nanosleep()                                     */
+#include <time.h>        /* Time defs - time(), localtime(), strftime()     */
+                         /* nanosleep()                                     */
 #include <sys/time.h>    /* Standard time definitions - timeval, timersub   */
 #include <limits.h>      /* Variable max sizes - ULONG_MAX                  */
 #include <stdbool.h>     /* Boolean types                                   */

@@ -31,9 +31,7 @@ AC_STRUCT_TM
 # Checks for library functions.
 AC_PROG_GCC_TRADITIONAL
 AC_FUNC_SELECT_ARGTYPES
-m4_warn([obsolete],
-[your code may safely assume C89 semantics that RETSIGTYPE is void.
-Remove this warning and the `AC_CACHE_CHECK' when you adjust the code.])dnl
+
 AC_CACHE_CHECK([return type of signal handlers],[ac_cv_type_signal],[AC_COMPILE_IFELSE(
 [AC_LANG_PROGRAM([#include <sys/types.h>
 #include <signal.h>
