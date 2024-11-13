@@ -4,9 +4,11 @@
 /*                                                                           */
 /* Description: Bit Error Rate Test (BERT) for serial ports                  */
 /*                                                                           */
-/* Copyright (C) 2004, 2010, 2011 David Wilson Clarke                        */
+/* Copyright (C) 2004, 2010, 2011       - David Wilson Clarke                */
+/*  Resurected with minor changes 2024  - Jay Morgan (the-moog)              */
 /*                                                                           */
-/* This file is part of Serbert.                                             */
+/* This file is part of Serbert. v0.3.1  https://github.com/the-moog/serbert */
+/*                               v0.3.0  https://serbert.sourceforge.com     */
 /*                                                                           */
 /* Serbert is free software; you can redistribute it and/or modify           */
 /* it under the terms of the GNU General Public License as published by      */
@@ -18,7 +20,7 @@
 /* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             */
 /* GNU General Public License for more details.                              */
 /*                                                                           */
-/* You should have received a copy of the GNU General Public License         */
+/* You should have received a copy of the GNU General Public License v2.0    */
 /* along with this program; if not, write to the Free Software               */
 /* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA */
 /*                                                                           */
@@ -158,7 +160,7 @@ enum { i_STR_TERM = 0 };      /* String termination character               */
 /* String literals */
 
 /* Default serial port */
-static const char *i_VERSION = "Serbert version 0.3.0";
+static const char *i_VERSION = "Serbert version 0.3.1";
 
 /* Structs */
 
