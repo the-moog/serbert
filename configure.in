@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(SERBERT, 0.3.0)
-AM_INIT_AUTOMAKE(SERBERT, 0.3.0)
+AC_INIT(SERBERT, 0.3.1)
+AM_INIT_AUTOMAKE(SERBERT, 0.3.1)
 AC_CONFIG_SRCDIR([serbert.c])
 
 # Checks for programs.
