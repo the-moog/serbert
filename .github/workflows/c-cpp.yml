@@ -7,6 +7,11 @@ on:
 #  pull_request:
 #    branches: [ "main" ]
 
+  push:
+    branches: [ "release" ]
+    tags:
+      - "v*.*.*"
+
 jobs:
   build:
 
@@ -31,8 +36,8 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        body_path: ${{ github.workspace }}-CHANGELOG.txt
-        repository: the-moog/serbert
+        body_path: ${{ github.workspace }}
+        #repository: the-moog/serbert
         # note you'll typically need to create a personal access token
         # with permissions to create releases in the other repo
         # token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
