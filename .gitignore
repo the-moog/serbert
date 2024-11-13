@@ -42,15 +42,11 @@
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
 *.mod*
 *.cmd
 .tmp_versions/
 modules.order
 Module.symvers
-Mkfile.old
-dkms.conf
-ChangeLog~ serbert.c~
 *~
 .deps
 Makefile
@@ -59,4 +55,7 @@ config.status
 doc/Makefile
 serbert
 doc/serbert.html
-SERBERT-0.3.1.tar.gz
+SERBERT-*.tar.gz
+autom4te.cache
+autoscan.log
+configure.scan
